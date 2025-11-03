@@ -1,26 +1,18 @@
 <?php 
 
 class Db {
-    private $host;
-    private $db;
-    private $user;
-    private $password;
     public $conection;
 
-    public function __construct(){
-        $this->host = constant('DB_HOST');
-        $this->db = constant('DB');
-        $this->user = constant('DB_USER');
-        $this->password = constant('DB_PASS');
-        
+    public function __construct() {
         try {
-            $this->conection = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db, $this->user, $this->password);
+            $connectionString = "mysql:host=".DB_HOST.";dbname=".DB.";charset=utf8";
+            $this->conection = new PDO($connectionString, DB_USER, DB_PASS);
             $this->conection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
+            $this->conection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        } catch(PDOException $e) {
             die("Error de conexión: " . $e->getMessage());
         }
     }
-
 }
 
 ?>
