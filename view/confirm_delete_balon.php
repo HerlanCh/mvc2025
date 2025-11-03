@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-lg-6 mx-auto">
         <div class="card border-danger">
-            <div class="card-body p-4 text-center">
+            <div class="card-body p-4 text-center" style="max-height: 80vh; overflow-y: auto;">
                 <div class="mb-4">
                     <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 4rem;"></i>
                 </div>
@@ -17,7 +17,7 @@
 
                 <?php if(isset($dataToView["data"]["id"])): ?>
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body" style="max-height: 10vh">
                             <?php if(!empty($dataToView["data"]["imagen"])): ?>
                                 <img src="<?php echo $dataToView["data"]["imagen"]; ?>" 
                                      class="img-thumbnail mb-3" 
@@ -54,17 +54,21 @@
                         Esta acción no se puede deshacer.
                     </div>
 
-                    <form action="?controller=balon&action=delete" method="POST" class="d-flex gap-2">
-                        <input type="hidden" name="id" value="<?php echo $dataToView["data"]["id"]; ?>">
-                        
-                        <button type="submit" class="btn btn-danger flex-fill">
-                            <i class="bi bi-trash"></i> Sí, eliminar
-                        </button>
-                        
-                        <a href="?controller=balon&action=list" class="btn btn-secondary flex-fill">
-                            <i class="bi bi-x-circle"></i> Cancelar
-                        </a>
-                    </form>
+                    <!-- Botones fijos en la parte inferior -->
+                    <div class="mt-4 pt-3 border-top">
+                        <form action="?controller=balon&action=delete" method="POST" class="d-flex gap-2">
+                            <input type="hidden" name="id" value="<?php echo $dataToView["data"]["id"]; ?>">
+                            
+                            <button type="submit" class="btn btn-danger flex-fill">
+                                <i class="bi bi-trash"></i> Sí, eliminar
+                            </button>
+                            
+                            <a href="?controller=balon&action=list" class="btn btn-secondary flex-fill">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </a>
+                        </form>
+                    </div>
+
                 <?php else: ?>
                     <div class="alert alert-danger">
                         <i class="bi bi-exclamation-circle"></i> 
