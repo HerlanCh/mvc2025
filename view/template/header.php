@@ -1,3 +1,9 @@
+<?php
+// Si la sesión no está iniciada, iniciarla
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -344,13 +350,32 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=balon&action=list">
-                            <i class="bi bi-grid"></i> Catálogo
+                        <a class="nav-link" href="?controller=dashboard&action=index">
+                            <i class="bi bi-speedometer2"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=balon&action=create">
-                            <i class="bi bi-plus-circle"></i> Agregar Balón
+                        <a class="nav-link" href="?controller=balon&action=list">
+                            <i class="bi bi-grid"></i> Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?controller=cliente&action=list">
+                            <i class="bi bi-people"></i> Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="?controller=carrito&action=index">
+                            <i class="bi bi-cart3"></i> Carrito
+                            <?php 
+                            if(session_status() == PHP_SESSION_NONE) session_start();
+                            $cart_count = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
+                            if($cart_count > 0): 
+                            ?>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">
+                                <?php echo $cart_count; ?>
+                            </span>
+                            <?php endif; ?>
                         </a>
                     </li>
                 </ul>

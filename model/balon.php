@@ -2,7 +2,7 @@
 
 class Balon {
     private $table = 'balon';
-    private $conection;
+    public $conection;
 
     public function __construct() {}
 

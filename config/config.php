@@ -7,8 +7,8 @@ define("DB_USER", "root");
 define("DB_PASS", "123456");
 
 /* Default options */
-define("DEFAULT_CONTROLLER", "balon");
-define("DEFAULT_ACTION", "list");
+define("DEFAULT_CONTROLLER", "dashboard");
+define("DEFAULT_ACTION", "index");
 
 /* Site configuration */
 define("SITE_NAME", "BallStore");

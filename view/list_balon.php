@@ -83,13 +83,32 @@
                             </span>
                         </div>
 
+                        <!-- Agregar al Carrito -->
+                        <?php if($balon["stock"] > 0): ?>
+                        <form action="?controller=carrito&action=agregar" method="POST" class="mb-2">
+                            <input type="hidden" name="balon_id" value="<?php echo $balon["id"]; ?>">
+                            <div class="input-group input-group-sm mb-2">
+                                <input type="number" 
+                                       name="cantidad" 
+                                       class="form-control" 
+                                       value="1" 
+                                       min="1" 
+                                       max="<?php echo $balon["stock"]; ?>"
+                                       required>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-cart-plus"></i> Agregar
+                                </button>
+                            </div>
+                        </form>
+                        <?php endif; ?>
+
                         <div class="d-flex gap-2">
                             <a href="?controller=balon&action=edit&id=<?php echo $balon["id"]; ?>" 
-                               class="btn btn-warning flex-fill">
+                               class="btn btn-sm btn-warning flex-fill">
                                 <i class="bi bi-pencil-square"></i> Editar
                             </a>
                             <a href="?controller=balon&action=confirmDelete&id=<?php echo $balon["id"]; ?>" 
-                               class="btn btn-danger flex-fill">
+                               class="btn btn-sm btn-danger flex-fill">
                                 <i class="bi bi-trash"></i> Eliminar
                             </a>
                         </div>
