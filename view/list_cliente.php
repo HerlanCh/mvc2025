@@ -1,147 +1,101 @@
 <h1 class="page-title">
-    <i class="bi bi-person-fill"></i> <?php echo $controller->page_title; ?>
+    <i class="bi bi-people-fill"></i> <?php echo $controller->page_title; ?>
 </h1>
 
 <?php if(isset($_GET["response"]) && $_GET["response"] === true): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle-fill"></i> 
-        <strong>¡Guardado!</strong> El cliente ha sido guardado exitosamente.
+        <strong>¡Éxito!</strong> Operación realizada correctamente.
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 <?php endif; ?>
 
-<div class="row">
-    <div class="col-lg-8 mx-auto">
-        <div class="card">
-            <div class="card-body p-4">
-                <form action="?controller=cliente&action=save" method="POST" class="needs-validation" novalidate>
-                    
-                    <?php if(isset($dataToView["data"]["id"])): ?>
-                        <input type="hidden" name="id" value="<?php echo $dataToView["data"]["id"]; ?>">
-                    <?php endif; ?>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <label for="nombre" class="form-label">
-                                <i class="bi bi-person"></i> Nombre *
-                            </label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="nombre" 
-                                   name="nombre" 
-                                   value="<?php echo isset($dataToView["data"]["nombre"]) ? htmlspecialchars($dataToView["data"]["nombre"]) : ''; ?>"
-                                   placeholder="Juan"
-                                   required>
-                            <div class="invalid-feedback">
-                                Por favor ingresa el nombre.
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-4">
-                            <label for="apellido" class="form-label">
-                                <i class="bi bi-person"></i> Apellido *
-                            </label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="apellido" 
-                                   name="apellido" 
-                                   value="<?php echo isset($dataToView["data"]["apellido"]) ? htmlspecialchars($dataToView["data"]["apellido"]) : ''; ?>"
-                                   placeholder="Pérez"
-                                   required>
-                            <div class="invalid-feedback">
-                                Por favor ingresa el apellido.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <label for="email" class="form-label">
-                                <i class="bi bi-envelope"></i> Email *
-                            </label>
-                            <input type="email" 
-                                   class="form-control" 
-                                   id="email" 
-                                   name="email" 
-                                   value="<?php echo isset($dataToView["data"]["email"]) ? htmlspecialchars($dataToView["data"]["email"]) : ''; ?>"
-                                   placeholder="correo@ejemplo.com"
-                                   required>
-                            <div class="invalid-feedback">
-                                Por favor ingresa un email válido.
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-4">
-                            <label for="telefono" class="form-label">
-                                <i class="bi bi-telephone"></i> Teléfono
-                            </label>
-                            <input type="tel" 
-                                   class="form-control" 
-                                   id="telefono" 
-                                   name="telefono" 
-                                   value="<?php echo isset($dataToView["data"]["telefono"]) ? htmlspecialchars($dataToView["data"]["telefono"]) : ''; ?>"
-                                   placeholder="71234567">
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="direccion" class="form-label">
-                            <i class="bi bi-house"></i> Dirección
-                        </label>
-                        <textarea class="form-control" 
-                                  id="direccion" 
-                                  name="direccion" 
-                                  rows="2"
-                                  placeholder="Av. Principal #123"><?php echo isset($dataToView["data"]["direccion"]) ? htmlspecialchars($dataToView["data"]["direccion"]) : ''; ?></textarea>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="ciudad" class="form-label">
-                            <i class="bi bi-geo-alt"></i> Ciudad
-                        </label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="ciudad" 
-                               name="ciudad" 
-                               value="<?php echo isset($dataToView["data"]["ciudad"]) ? htmlspecialchars($dataToView["data"]["ciudad"]) : ''; ?>"
-                               placeholder="La Paz">
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary flex-fill">
-                            <i class="bi bi-save"></i> Guardar Cliente
-                        </button>
-                        <a href="?controller=cliente&action=list" class="btn btn-secondary flex-fill">
-                            <i class="bi bi-x-circle"></i> Cancelar
-                        </a>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="text-center mt-3">
-            <small class="text-white">
-                <i class="bi bi-info-circle"></i> Los campos marcados con * son obligatorios
-            </small>
-        </div>
-    </div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <p class="text-muted mb-0">
+        <i class="bi bi-person-badge"></i> Total de clientes: 
+        <strong><?php echo count($dataToView["data"]); ?></strong>
+    </p>
+    <a href="?controller=cliente&action=create" class="btn btn-success">
+        <i class="bi bi-person-plus"></i> Nuevo Cliente
+    </a>
 </div>
 
-<script>
-    // Bootstrap form validation
-    (function () {
-        'use strict'
-        var forms = document.querySelectorAll('.needs-validation')
-        Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-                form.classList.add('was-validated')
-            }, false)
-        })
-    })()
-</script>
+<?php if(empty($dataToView["data"])): ?>
+    <div class="text-center py-5">
+        <i class="bi bi-person-x" style="font-size: 5rem; color: #cbd5e1;"></i>
+        <h3 class="mt-3 text-muted">No hay clientes registrados</h3>
+        <p class="text-muted">Comienza agregando tu primer cliente</p>
+        <a href="?controller=cliente&action=create" class="btn btn-primary mt-3">
+            <i class="bi bi-person-plus"></i> Agregar Primer Cliente
+        </a>
+    </div>
+<?php else: ?>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre Completo</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Ciudad</th>
+                            <th>Fecha Registro</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($dataToView["data"] as $cliente): ?>
+                        <tr>
+                            <td><strong>#<?php echo $cliente["id"]; ?></strong></td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-2" 
+                                         style="width: 40px; height: 40px; font-weight: bold;">
+                                        <?php echo strtoupper(substr($cliente["nombre"], 0, 1)); ?>
+                                    </div>
+                                    <div>
+                                        <strong><?php echo htmlspecialchars($cliente["nombre"] . ' ' . $cliente["apellido"]); ?></strong>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <i class="bi bi-envelope"></i>
+                                <?php echo htmlspecialchars($cliente["email"]); ?>
+                            </td>
+                            <td>
+                                <i class="bi bi-telephone"></i>
+                                <?php echo htmlspecialchars($cliente["telefono"]); ?>
+                            </td>
+                            <td>
+                                <i class="bi bi-geo-alt"></i>
+                                <?php echo htmlspecialchars($cliente["ciudad"]); ?>
+                            </td>
+                            <td>
+                                <small class="text-muted">
+                                    <?php echo date('d/m/Y', strtotime($cliente["fecha_registro"])); ?>
+                                </small>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a href="?controller=cliente&action=edit&id=<?php echo $cliente["id"]; ?>" 
+                                       class="btn btn-sm btn-warning"
+                                       title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="?controller=cliente&action=confirmDelete&id=<?php echo $cliente["id"]; ?>" 
+                                       class="btn btn-sm btn-danger"
+                                       title="Eliminar">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

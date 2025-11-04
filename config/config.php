@@ -13,6 +13,6 @@ define("DEFAULT_ACTION", "index");
 /* Site configuration */
 define("SITE_NAME", "BallStore");
 define("SITE_SLOGAN", "Tu tienda deportiva de confianza");
-define("CURRENCY", "$");
+define("CURRENCY", "Bs");
 
 ?>
