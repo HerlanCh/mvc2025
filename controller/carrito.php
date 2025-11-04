@@ -80,25 +80,37 @@ class carritoController
 
     /* Actualizar cantidad */
     public function actualizar()
-    {
-        if (isset($_POST['balon_id']) && isset($_POST['cantidad'])) {
-            $balon_id = $_POST['balon_id'];
-            $cantidad = intval($_POST['cantidad']);
+{
+    if (isset($_POST['balon_id']) && isset($_POST['cantidad'])) {
+        $balon_id = $_POST['balon_id'];
+        $cantidad = intval($_POST['cantidad']);
 
+        // Obtener información del balon desde la base de datos
+        $balon = $this->balonObj->getBalonById($balon_id);
+
+        if ($balon) {
             foreach ($_SESSION['carrito'] as &$item) {
                 if ($item['id'] == $balon_id) {
                     if ($cantidad > 0) {
-                        $item['cantidad'] = $cantidad;
-                        $item['subtotal'] = $item['cantidad'] * $item['precio'];
+                        // Validar que no supere el stock disponible
+                        if ($cantidad <= $balon['stock']) {
+                            $item['cantidad'] = $cantidad;
+                            $item['subtotal'] = $item['cantidad'] * $item['precio'];
+                            $_GET["response"] = "updated"; // Exito
+                        } else {
+                            $_GET["response"] = "stock_exceeded"; // Stock excedido
+                        }
                     }
                     break;
                 }
             }
         }
-
-        header("Location: ?controller=carrito&action=index");
-        exit();
     }
+
+    header("Location: ?controller=carrito&action=index&response=" . ($_GET["response"] ?? ""));
+    exit();
+}
+
 
     /* Eliminar del carrito */
     public function eliminar()
@@ -195,11 +207,7 @@ class carritoController
             'cantidad_items' => $cantidad_items
         );
     }
-    public function getConnection()
-    {
-        $this->getConection(); // Asegura que la conexión esté inicializada
-        return $this->conection;
-    }
+
 }
 
 ?>
