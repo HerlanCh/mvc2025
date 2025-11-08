@@ -73,7 +73,7 @@
 <div class="row g-4 mb-4">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="height: 300px;">
                 <h5 class="card-title mb-3">
                     <i class="bi bi-pie-chart-fill text-primary"></i> 
                     Productos por Deporte
