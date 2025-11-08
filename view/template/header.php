@@ -1,9 +1,3 @@
-<?php
-// Si la sesión no está iniciada, iniciarla
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -377,6 +371,29 @@ if (session_status() === PHP_SESSION_NONE) {
                             </span>
                             <?php endif; ?>
                         </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> 
+                            <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario'; ?>
+                            <?php if(isset($_SESSION['user_role'])): ?>
+                            <span class="badge bg-<?php echo $_SESSION['user_role'] === 'admin' ? 'danger' : 'primary'; ?>">
+                                <?php echo ucfirst($_SESSION['user_role']); ?>
+                            </span>
+                            <?php endif; ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#" onclick="openPreferences()">
+                                <i class="bi bi-gear"></i> Preferencias
+                            </a></li>
+                            <li><a class="dropdown-item" href="?controller=wishlist&action=index">
+                                <i class="bi bi-heart"></i> Favoritos
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="?controller=auth&action=logout">
+                                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                            </a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
