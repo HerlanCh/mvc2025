@@ -4,7 +4,7 @@
 define("DB_HOST", "localhost");
 define("DB", "tienda_balones");
 define("DB_USER", "root");
-define("DB_PASS", "123456");
+define("DB_PASS", "");
 
 /* Default options */
 define("DEFAULT_CONTROLLER", "dashboard");
