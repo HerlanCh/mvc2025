@@ -383,9 +383,11 @@
                             <?php endif; ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#" onclick="openPreferences()">
-                                <i class="bi bi-gear"></i> Preferencias
-                            </a></li>
+                            <li>
+                                <a class="dropdown-item" href="?controller=preferences&action=index">
+                                    <i class="bi bi-gear"></i> Preferencias
+                                </a>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="?controller=wishlist&action=index">
                                     <i class="bi bi-heart"></i> Favoritos

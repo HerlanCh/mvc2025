@@ -113,15 +113,7 @@
             const prefs = localStore.get('preferences') || {};
             prefs[key] = value;
             localStore.set('preferences', prefs);
-            
-            // Mostrar notificación
             showNotification('Preferencia guardada', 'success');
-        }
-        
-        function openPreferences() {
-            // Aquí se podría abrir un modal con preferencias
-            const prefs = localStore.get('preferences');
-            alert('Preferencias:\n' + JSON.stringify(prefs, null, 2));
         }
         
         // ========================================
