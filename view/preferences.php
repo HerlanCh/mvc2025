@@ -276,6 +276,15 @@ document.querySelector('form').addEventListener('submit', function(e) {
     };
     
     BallStore.storage.local.set('preferences', preferences);
+    
+    // Aplicar tema inmediatamente
+    localStorage.setItem('ballstore_theme', preferences.tema);
+    if(preferences.tema === 'dark') {
+        document.body.classList.add('dark-theme');
+    } else {
+        document.body.classList.remove('dark-theme');
+    }
+    
     BallStore.notifications('Preferencias guardadas', 'success');
 });
 
@@ -293,11 +302,15 @@ function clearLocalData() {
 document.querySelectorAll('input[name="tema"]').forEach(radio => {
     radio.addEventListener('change', function() {
         if(this.value === 'dark') {
-            document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+            document.body.classList.add('dark-theme');
             BallStore.notifications('Vista previa del tema oscuro', 'info');
         } else {
-            document.body.style.filter = 'none';
+            document.body.classList.remove('dark-theme');
+            BallStore.notifications('Vista previa del tema claro', 'info');
         }
+        
+        // Guardar inmediatamente
+        localStorage.setItem('ballstore_theme', this.value);
     });
 });
 </script>

@@ -89,11 +89,7 @@
                         </span>
                     <?php endif; ?>
                     
-                    <button class="btn btn-danger position-absolute top-0 end-0 m-2" 
-                            onclick="removeFromWishlist(<?php echo $item['balon_id']; ?>)"
-                            title="Eliminar de favoritos">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
+                    
 
                     <div style="overflow: hidden; height: 250px;">
                         <?php if(!empty($item["imagen"])): ?>
@@ -108,6 +104,11 @@
                             </div>
                         <?php endif; ?>
                     </div>
+                    <button class="btn btn-danger position-absolute top-0 end-0 m-2" 
+                            onclick="removeFromWishlist(<?php echo $item['balon_id']; ?>)"
+                            title="Eliminar de favoritos">
+                        <i class="bi bi-heart-fill"></i>
+                    </button>
                 </div>
 
                 <div class="card-body">

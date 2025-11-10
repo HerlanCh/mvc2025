@@ -53,6 +53,43 @@ class preferencesController{
         return $this->preferencesObj->getUserPreferences($_SESSION['user_id']);
     }
 
+    /* Guardar solo el tema (AJAX) */
+    public function saveTheme(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $tema = $_POST['tema'] ?? 'light';
+            
+            // Validar tema
+            if(!in_array($tema, ['light', 'dark'])){
+                $tema = 'light';
+            }
+            
+            // Obtener preferencias actuales
+            $currentPrefs = $this->preferencesObj->getUserPreferences($_SESSION['user_id']);
+            
+            // Actualizar solo el tema
+            $preferences = array(
+                'tema' => $tema,
+                'idioma' => $currentPrefs['idioma'],
+                'vista_catalogo' => $currentPrefs['vista_catalogo'],
+                'items_por_pagina' => $currentPrefs['items_por_pagina'],
+                'notificaciones' => $currentPrefs['notificaciones'],
+                'sonido' => $currentPrefs['sonido']
+            );
+            
+            $this->preferencesObj->updatePreferences($_SESSION['user_id'], $preferences);
+            
+            // Retornar JSON si es AJAX
+            if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+               strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                header('Content-Type: application/json');
+                echo json_encode(['success' => true]);
+                exit();
+            }
+            
+            return null;
+        }
+    }
+
     /* Restablecer a valores por defecto */
     public function reset(){
         $defaults = array(

@@ -18,6 +18,65 @@
     <!-- Custom JS -->
     <script>
         // ========================================
+        // CAMBIO DE TEMA (DARK/LIGHT)
+        // ========================================
+        
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            // Aplicar tema
+            if(newTheme === 'dark') {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+            
+            // Guardar en localStorage
+            localStorage.setItem('ballstore_theme', newTheme);
+            
+            // Actualizar icono y texto
+            updateThemeUI(newTheme);
+            
+            // Mostrar notificación
+            showNotification(`Tema ${newTheme === 'dark' ? 'oscuro' : 'claro'} activado`, 'success');
+            
+            // Guardar en BD via AJAX (opcional)
+            saveThemeToDatabase(newTheme);
+        }
+        
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+            
+            if(theme === 'dark') {
+                icon.className = 'bi bi-sun';
+                text.textContent = 'Tema Claro';
+            } else {
+                icon.className = 'bi bi-moon-stars';
+                text.textContent = 'Tema Oscuro';
+            }
+        }
+        
+        function saveThemeToDatabase(theme) {
+            // Guardar en BD via AJAX
+            fetch('?controller=preferences&action=saveTheme', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'tema=' + theme
+            }).catch(err => console.log('Error guardando tema:', err));
+        }
+        
+        // Inicializar UI del tema al cargar
+        window.addEventListener('load', function() {
+            const currentTheme = localStorage.getItem('ballstore_theme') || 'light';
+            updateThemeUI(currentTheme);
+        });
+        
+        // ========================================
         // SISTEMA DE ALMACENAMIENTO WEB
         // ========================================
         

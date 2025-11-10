@@ -23,6 +23,90 @@
             --dark-color: #1e293b;
             --light-color: #f8fafc;
             --danger-color: #ef4444;
+            
+            /* Colores del tema */
+            --bg-color: #ffffff;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --input-bg: #ffffff;
+            --input-border: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* TEMA OSCURO */
+        body.dark-theme {
+            --bg-color: #1e293b;
+            --text-color: #f1f5f9;
+            --card-bg: #334155;
+            --navbar-bg: rgba(30, 41, 59, 0.95);
+            --input-bg: #475569;
+            --input-border: #64748b;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-theme {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+            color: var(--text-color);
+        }
+
+        body.dark-theme .navbar {
+            background: var(--navbar-bg) !important;
+        }
+
+        body.dark-theme .navbar-brand,
+        body.dark-theme .nav-link,
+        body.dark-theme .dropdown-item {
+            color: var(--text-color) !important;
+        }
+
+        body.dark-theme .main-container {
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        body.dark-theme .card {
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        body.dark-theme .form-control,
+        body.dark-theme .form-select {
+            background: var(--input-bg);
+            color: var(--text-color);
+            border-color: var(--input-border);
+        }
+
+        body.dark-theme .table {
+            color: var(--text-color);
+        }
+
+        body.dark-theme .table tbody tr:hover {
+            background-color: #475569;
+        }
+
+        body.dark-theme .page-title,
+        body.dark-theme h1, 
+        body.dark-theme h2, 
+        body.dark-theme h3,
+        body.dark-theme h4,
+        body.dark-theme h5,
+        body.dark-theme h6 {
+            color: var(--text-color);
+        }
+
+        body.dark-theme .text-muted {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-theme .dropdown-menu {
+            background: var(--card-bg);
+            border-color: var(--input-border);
+        }
+
+        body.dark-theme .modal-content {
+            background: var(--card-bg);
+            color: var(--text-color);
         }
 
         * {
@@ -36,6 +120,8 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding-bottom: 50px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
         }
 
         /* Navbar Styles */
@@ -331,6 +417,19 @@
     </style>
 </head>
 <body>
+    <!-- Script para aplicar tema ANTES de que se cargue la página -->
+    <script>
+        (function() {
+            // Obtener tema guardado
+            const savedTheme = localStorage.getItem('ballstore_theme') || 'light';
+            
+            // Aplicar tema inmediatamente
+            if(savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -383,6 +482,13 @@
                             <?php endif; ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="toggleTheme(); return false;">
+                                    <i class="bi bi-moon-stars" id="themeIcon"></i> 
+                                    <span id="themeText">Tema Oscuro</span>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item" href="?controller=preferences&action=index">
                                     <i class="bi bi-gear"></i> Preferencias
