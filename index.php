@@ -43,10 +43,15 @@ if(method_exists($controller,$_GET["action"])) {
 }
 
 /* Load views - Solo para vistas con template */
-if($_GET["controller"] !== 'login'){
+$public_controllers = array('auth', 'login'); // Controladores que no usan template
+
+if(!in_array($_GET["controller"], $public_controllers)){
     require_once 'view/template/header.php';
     require_once 'view/'.$controller->view.'.php';
     require_once 'view/template/footer.php';
+} else {
+    // Cargar solo la vista sin header/footer
+    require_once 'view/'.$controller->view.'.php';
 }
 
 ?>
