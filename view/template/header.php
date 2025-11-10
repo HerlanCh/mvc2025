@@ -386,9 +386,21 @@
                             <li><a class="dropdown-item" href="#" onclick="openPreferences()">
                                 <i class="bi bi-gear"></i> Preferencias
                             </a></li>
-                            <li><a class="dropdown-item" href="?controller=wishlist&action=index">
-                                <i class="bi bi-heart"></i> Favoritos
-                            </a></li>
+                            <li>
+                                <a class="dropdown-item" href="?controller=wishlist&action=index">
+                                    <i class="bi bi-heart"></i> Favoritos
+                                    <?php
+                                    if(isset($_SESSION['user_id'])){
+                                        require_once 'model/wishlist.php';
+                                        $wishlistObj = new Wishlist();
+                                        $wishlist_count = $wishlistObj->countUserWishlist($_SESSION['user_id']);
+                                        if($wishlist_count > 0){
+                                            echo '<span class="badge bg-danger ms-2">' . $wishlist_count . '</span>';
+                                        }
+                                    }
+                                    ?>
+                                </a>
+                            </li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="?controller=auth&action=logout">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
