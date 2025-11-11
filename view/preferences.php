@@ -83,122 +83,7 @@
 
                     <hr>
 
-                    <!-- Vista de Catálogo -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">
-                            <i class="bi bi-grid-3x3"></i> Vista del Catálogo
-                        </label>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card <?php echo ($dataToView['data']['vista_catalogo'] === 'grid') ? 'border-primary' : ''; ?>">
-                                    <div class="card-body text-center">
-                                        <input type="radio" 
-                                               class="btn-check" 
-                                               name="vista_catalogo" 
-                                               id="vista_grid" 
-                                               value="grid"
-                                               <?php echo ($dataToView['data']['vista_catalogo'] === 'grid') ? 'checked' : ''; ?>>
-                                        <label class="w-100" for="vista_grid">
-                                            <i class="bi bi-grid-3x3-gap" style="font-size: 2rem; color: #8b5cf6;"></i>
-                                            <h6 class="mt-2 mb-0">Cuadrícula</h6>
-                                            <small class="text-muted">Vista en tarjetas</small>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card <?php echo ($dataToView['data']['vista_catalogo'] === 'list') ? 'border-primary' : ''; ?>">
-                                    <div class="card-body text-center">
-                                        <input type="radio" 
-                                               class="btn-check" 
-                                               name="vista_catalogo" 
-                                               id="vista_list" 
-                                               value="list"
-                                               <?php echo ($dataToView['data']['vista_catalogo'] === 'list') ? 'checked' : ''; ?>>
-                                        <label class="w-100" for="vista_list">
-                                            <i class="bi bi-list-ul" style="font-size: 2rem; color: #06b6d4;"></i>
-                                            <h6 class="mt-2 mb-0">Lista</h6>
-                                            <small class="text-muted">Vista detallada</small>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <!-- Idioma -->
-                    <div class="mb-4">
-                        <label for="idioma" class="form-label fw-bold">
-                            <i class="bi bi-translate"></i> Idioma
-                        </label>
-                        <select class="form-select" id="idioma" name="idioma">
-                            <option value="es" <?php echo ($dataToView['data']['idioma'] === 'es') ? 'selected' : ''; ?>>
-                                🇪🇸 Español
-                            </option>
-                            <option value="en" <?php echo ($dataToView['data']['idioma'] === 'en') ? 'selected' : ''; ?>>
-                                🇺🇸 English
-                            </option>
-                            <option value="pt" <?php echo ($dataToView['data']['idioma'] === 'pt') ? 'selected' : ''; ?>>
-                                🇧🇷 Português
-                            </option>
-                        </select>
-                        <small class="text-muted d-block mt-2">
-                            <i class="bi bi-info-circle"></i> Próximamente disponible
-                        </small>
-                    </div>
-
-                    <hr>
-
-                    <!-- Items por página -->
-                    <div class="mb-4">
-                        <label for="items_por_pagina" class="form-label fw-bold">
-                            <i class="bi bi-collection"></i> Productos por página
-                        </label>
-                        <select class="form-select" id="items_por_pagina" name="items_por_pagina">
-                            <option value="6" <?php echo ($dataToView['data']['items_por_pagina'] == 6) ? 'selected' : ''; ?>>6 productos</option>
-                            <option value="12" <?php echo ($dataToView['data']['items_por_pagina'] == 12) ? 'selected' : ''; ?>>12 productos</option>
-                            <option value="24" <?php echo ($dataToView['data']['items_por_pagina'] == 24) ? 'selected' : ''; ?>>24 productos</option>
-                            <option value="48" <?php echo ($dataToView['data']['items_por_pagina'] == 48) ? 'selected' : ''; ?>>48 productos</option>
-                        </select>
-                    </div>
-
-                    <hr>
-
-                    <!-- Notificaciones -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">
-                            <i class="bi bi-bell"></i> Notificaciones
-                        </label>
-                        
-                        <div class="form-check form-switch mb-2">
-                            <input class="form-check-input" 
-                                   type="checkbox" 
-                                   id="notificaciones" 
-                                   name="notificaciones"
-                                   <?php echo ($dataToView['data']['notificaciones'] == 1) ? 'checked' : ''; ?>>
-                            <label class="form-check-label" for="notificaciones">
-                                Mostrar notificaciones en pantalla
-                            </label>
-                        </div>
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" 
-                                   type="checkbox" 
-                                   id="sonido" 
-                                   name="sonido"
-                                   <?php echo ($dataToView['data']['sonido'] == 1) ? 'checked' : ''; ?>>
-                            <label class="form-check-label" for="sonido">
-                                Reproducir sonidos
-                            </label>
-                        </div>
-
-                        <small class="text-muted d-block mt-2">
-                            <i class="bi bi-info-circle"></i> 
-                            Las notificaciones te alertarán sobre acciones importantes
-                        </small>
-                    </div>
+                    
 
                     <hr>
 
@@ -221,11 +106,7 @@
                         <button type="submit" class="btn btn-primary btn-lg">
                             <i class="bi bi-save"></i> Guardar Preferencias
                         </button>
-                        <a href="?controller=preferences&action=reset" 
-                           class="btn btn-outline-secondary"
-                           onclick="return confirm('¿Restablecer a valores por defecto?')">
-                            <i class="bi bi-arrow-clockwise"></i> Restablecer Predeterminados
-                        </a>
+                        
                         <a href="?controller=dashboard&action=index" class="btn btn-outline-primary">
                             <i class="bi bi-arrow-left"></i> Volver al Dashboard
                         </a>
@@ -234,31 +115,7 @@
             </div>
         </div>
 
-        <!-- Información de LocalStorage -->
-        <div class="card mt-4">
-            <div class="card-header bg-secondary text-white">
-                <h6 class="mb-0">
-                    <i class="bi bi-database"></i> Almacenamiento Local
-                </h6>
-            </div>
-            <div class="card-body">
-                <p class="mb-2">
-                    <strong>Tus preferencias también se guardan en:</strong>
-                </p>
-                <ul>
-                    <li>Base de datos (persistente)</li>
-                    <li>LocalStorage del navegador (backup)</li>
-                </ul>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-success" onclick="BallStore.backup.export()">
-                        <i class="bi bi-download"></i> Exportar Datos
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger" onclick="clearLocalData()">
-                        <i class="bi bi-trash"></i> Limpiar Cache Local
-                    </button>
-                </div>
-            </div>
-        </div>
+       
     </div>
 </div>
 
