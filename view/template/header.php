@@ -418,6 +418,13 @@
 </head>
 <body>
     <!-- Script para aplicar tema ANTES de que se cargue la página -->
+    <script src="assets/js/storage-manager.js"></script>
+    <script src="assets/js/notifications.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/theme-manager.js"></script>
+    <script src="assets/js/favorites-manager.js"></script>
+    <script src="assets/js/cart-manager.js"></script>
+    <script src="assets/js/app.js"></script>
     <script>
         (function() {
             // Obtener tema guardado
@@ -429,6 +436,7 @@
             }
         })();
     </script>
+
     
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
