@@ -9,7 +9,7 @@ class carritoController{
     public $view;
 
     public function __construct() {
-        $this->view = 'carrito';
+        $this->view = 'venta/carrito';
         $this->page_title = 'Carrito de Compras';
         $this->balonObj = new Balon();
         $this->clienteObj = new Cliente();
@@ -29,7 +29,7 @@ class carritoController{
     /* Ver carrito */
     public function index(){
         $this->page_title = 'Carrito de Compras';
-        $this->view = 'carrito';
+        $this->view = 'venta/carrito';
         return $this->getCarritoItems();
     }
 
@@ -167,7 +167,7 @@ class carritoController{
     /* Checkout - Seleccionar cliente */
     public function checkout(){
         $this->page_title = 'Finalizar Compra';
-        $this->view = 'checkout';
+        $this->view = 'venta/checkout';
         
         $data = array();
         $data['carrito'] = $this->getCarritoItems();
@@ -226,7 +226,7 @@ class carritoController{
     /* Venta completada */
     public function completada(){
         $this->page_title = 'Compra Completada';
-        $this->view = 'venta_completada';
+        $this->view = 'venta/venta_completada';
         
         if(isset($_GET['venta_id'])){
             $venta = $this->ventaObj->getVentaById($_GET['venta_id']);

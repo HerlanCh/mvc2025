@@ -7,7 +7,7 @@ class authController{
     public $view;
 
     public function __construct() {
-        $this->view = 'login';
+        $this->view = 'auth/login';
         $this->page_title = 'Iniciar Sesión';
         $this->authObj = new Auth();
         
@@ -19,7 +19,7 @@ class authController{
     /* Mostrar formulario de login */
     public function login(){
         $this->page_title = 'Iniciar Sesión';
-        $this->view = 'login';
+        $this->view = 'auth/login';
         
         // Si ya está logueado, redirigir
         if(isset($_SESSION['user_id'])){
@@ -58,7 +58,7 @@ class authController{
                         array(
                             'expires' => $expiry,
                             'path' => '/',
-                            'secure' => false, // Cambiar a true en producción con HTTPS
+                            'secure' => false, 
                             'httponly' => true,
                             'samesite' => 'Strict'
                         )
@@ -106,7 +106,7 @@ class authController{
     /* Registro de usuario */
     public function register(){
         $this->page_title = 'Registrarse';
-        $this->view = 'register';
+        $this->view = 'auth/register';
         return null;
     }
 
