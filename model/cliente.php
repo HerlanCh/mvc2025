@@ -11,7 +11,7 @@ class Cliente {
         $this->conection = $dbObj->conection;
     }
 
-    /* Get all clientes */
+    /* Obtener todos los clientes */
     public function getClientes(){
         $this->getConection();
         $sql = "SELECT * FROM ".$this->table." ORDER BY id DESC";
@@ -20,7 +20,7 @@ class Cliente {
         return $stmt->fetchAll();
     }
 
-    /* Get cliente by id */
+    /* Cliente por Id */
     public function getClienteById($id){
         if(is_null($id)) return false;
         $this->getConection();
@@ -30,7 +30,7 @@ class Cliente {
         return $stmt->fetch();
     }
 
-    /* Get cliente by email */
+    /* Cliente por email */
     public function getClienteByEmail($email){
         $this->getConection();
         $sql = "SELECT * FROM ".$this->table." WHERE email = ?";
@@ -39,7 +39,7 @@ class Cliente {
         return $stmt->fetch();
     }
 
-    /* Save cliente */
+    /* Guardar cliente */
     public function save($param){
         $this->getConection();
 
@@ -81,7 +81,7 @@ class Cliente {
         return $id;
     }
 
-    /* Delete cliente */
+    /* Eliminar Cliente */
     public function deleteClienteById($id){
         $this->getConection();
         $sql = "DELETE FROM ".$this->table." WHERE id = ?";
@@ -89,7 +89,7 @@ class Cliente {
         return $stmt->execute([$id]);
     }
 
-    /* Get total clientes */
+    /* Clientes totales */
     public function getTotalClientes(){
         $this->getConection();
         $sql = "SELECT COUNT(*) as total FROM ".$this->table;

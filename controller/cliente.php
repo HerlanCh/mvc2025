@@ -14,14 +14,14 @@ class clienteController
         $this->clienteObj = new Cliente();
     }
 
-    /* List all clientes */
+    /* Listar todos los clientes */
     public function list()
     {
         $this->page_title = 'Gestión de Clientes';
         return $this->clienteObj->getClientes();
     }
 
-    /* Create new cliente */
+    /* Crear nuevos clientes */
     public function create()
     {
         $this->page_title = 'Nuevo Cliente';
@@ -29,7 +29,7 @@ class clienteController
         return null;
     }
 
-    /* Load cliente for edit */
+    /* Editar clientes */
     public function edit($id = null)
     {
         $this->page_title = 'Editar Cliente';
@@ -39,7 +39,7 @@ class clienteController
         return $this->clienteObj->getClienteById($id);
     }
 
-    /* Save cliente */
+    /* Guardar Clientes */
     public function save()
     {
         $this->view = 'cliente/edit_cliente';
@@ -50,7 +50,7 @@ class clienteController
         return $result;
     }
 
-    /* Confirm to delete */
+    /* Confirmar eliminacion */
     public function confirmDelete()
     {
         $this->page_title = 'Eliminar Cliente';
@@ -58,7 +58,7 @@ class clienteController
         return $this->clienteObj->getClienteById($_GET["id"]);
     }
 
-    /* Delete */
+    /* Eliminar */
     public function delete()
     {
         $this->page_title = 'Gestión de Clientes';

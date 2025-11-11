@@ -104,7 +104,7 @@ class Auth {
         return $stmt->execute([$hashedPassword, $user_id]);
     }
 
-    /* Obtener todos los usuarios (solo admin) */
+    /* Obtener todos los usuarios  */
     public function getAllUsers(){
         $this->getConection();
         $sql = "SELECT id, nombre, email, rol, activo, ultimo_acceso, fecha_registro 

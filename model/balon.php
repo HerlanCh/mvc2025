@@ -12,7 +12,7 @@ class Balon {
         $this->conection = $dbObj->conection;
     }
 
-    /* Get all balones */
+    /* Obtener todos los Balones */
     public function getBalones(){
         $this->getConection();
         $sql = "SELECT * FROM ".$this->table." ORDER BY id DESC";
@@ -21,7 +21,7 @@ class Balon {
         return $stmt->fetchAll();
     }
 
-    /* Get balon by id */
+    /* Obtener Balon por Id*/
     public function getBalonById($id){
         if(is_null($id)) return false;
         $this->getConection();
@@ -31,15 +31,15 @@ class Balon {
         return $stmt->fetch();
     }
 
-    /* Save balon */
+    /* Guardar */
     public function save($param){
         $this->getConection();
 
-        /* Set default values */
+        /* valores preteerminados */
         $nombre = $marca = $deporte = $imagen = "";
         $precio = $stock = 0;
 
-        /* Check if exists */
+        /* Verificar si existe*/
         $exists = false;
         if(isset($param["id"]) && $param["id"] != ''){
             $actualBalon = $this->getBalonById($param["id"]);
@@ -55,7 +55,7 @@ class Balon {
             }
         }
 
-        /* Received values */
+        /* Valores Recibidos */
         if(isset($param["nombre"])) $nombre = $param["nombre"];
         if(isset($param["marca"])) $marca = $param["marca"];
         if(isset($param["deporte"])) $deporte = $param["deporte"];
@@ -63,7 +63,7 @@ class Balon {
         if(isset($param["stock"])) $stock = $param["stock"];
         if(isset($param["imagen"])) $imagen = $param["imagen"];
 
-        /* Database operations */
+        /* Operaciones del bd */
         if($exists){
             $sql = "UPDATE ".$this->table." SET nombre=?, marca=?, deporte=?, precio=?, stock=?, imagen=? WHERE id=?";
             $stmt = $this->conection->prepare($sql);
@@ -78,7 +78,7 @@ class Balon {
         return $id;
     }
 
-    /* Delete balon by id */
+    /* Eliiminar por ID */
     public function deleteBalonById($id){
         $this->getConection();
         $sql = "DELETE FROM ".$this->table." WHERE id = ?";

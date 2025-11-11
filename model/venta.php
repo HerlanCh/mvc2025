@@ -15,7 +15,7 @@ class Venta
         $this->conection = $dbObj->conection;
     }
 
-    /* Get all ventas */
+    /* Obtener todas las ventas */
     public function getVentas()
     {
         $this->getConection();
@@ -28,7 +28,7 @@ class Venta
         return $stmt->fetchAll();
     }
 
-    /* Get venta by id */
+    /* Venta por Id */
     public function getVentaById($id)
     {
         if (is_null($id))
@@ -56,7 +56,7 @@ class Venta
         return $stmt->fetchAll();
     }
 
-    /* Create venta from cart */
+    /* Crear venta desde el carrito  */
     public function createVenta($cliente_id, $carrito)
     {
         $this->getConection();
@@ -104,7 +104,7 @@ class Venta
         }
     }
 
-    /* Get total ventas */
+    /* Total de ventas*/
     public function getTotalVentas()
     {
         $this->getConection();
@@ -115,7 +115,7 @@ class Venta
         return $result['total'];
     }
 
-    /* Get total ingresos */
+    /* Total de Ingresos */
     public function getTotalIngresos()
     {
         $this->getConection();
@@ -126,7 +126,7 @@ class Venta
         return $result['total_ingresos'] ?? 0;
     }
 
-    /* Get ventas recientes */
+    /* Ventas Recientes */
     public function getVentasRecientes($limit = 5)
     {
         $this->getConection();

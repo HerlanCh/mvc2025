@@ -531,3 +531,11 @@
     <!-- Main Container -->
     <div class="container">
         <div class="main-container">
+
+<script src="assets/js/storage-manager.js"></script>
+    <script src="assets/js/notifications.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/theme-manager.js"></script>
+    <script src="assets/js/favorites-manager.js"></script>
+    <script src="assets/js/cart-manager.js"></script>
+    <script src="assets/js/app.js"></script>

@@ -14,14 +14,14 @@ class balonController
         $this->balonObj = new Balon();
     }
 
-    /* List all balones */
+    /* Listar todos balones */
     public function list()
     {
         $this->page_title = 'Catálogo de Balones';
         return $this->balonObj->getBalones();
     }
 
-    /* Load balon for edit */
+    /* Editar */
     public function edit($id = null)
     {
         $this->page_title = 'Editar Balón';
@@ -31,7 +31,7 @@ class balonController
         return $this->balonObj->getBalonById($id);
     }
 
-    /* Create new balon */
+    /* Crear nuevo balon */
     public function create()
     {
         $this->page_title = 'Nuevo Balón';
@@ -39,7 +39,7 @@ class balonController
         return null;
     }
 
-    /* Save balon */
+    /* Guardar Balon */
     public function save()
     {
         $this->view = 'balon/edit_balon';
@@ -50,7 +50,7 @@ class balonController
         return $result;
     }
 
-    /* Confirm to delete */
+    /* Confirmar Eliminacion*/
     public function confirmDelete()
     {
         $this->page_title = 'Eliminar Balón';
@@ -58,7 +58,7 @@ class balonController
         return $this->balonObj->getBalonById($_GET["id"]);
     }
 
-    /* Delete */
+    /* Eliminar */
     public function delete()
     {
         $this->page_title = 'Catálogo de Balones';
