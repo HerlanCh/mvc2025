@@ -18,10 +18,10 @@ $public_routes = array(
 
 $controller_path = 'controller/'.$_GET["controller"].'.php';
 
-/* Check if controller exists */
+/* Revisa si el contorlador existe*/
 if(!file_exists($controller_path)) $controller_path = 'controller/'.constant("DEFAULT_CONTROLLER").'.php';
 
-/* Load controller */
+/* Caargar controlador*/
 require_once $controller_path;
 $controllerName = $_GET["controller"].'Controller';
 
@@ -36,7 +36,7 @@ if(!$is_public && $_GET["controller"] !== 'auth'){
 
 $controller = new $controllerName();
 
-/* Check if method is defined */
+/* Verifica si el metodo existe*/
 $dataToView["data"] = array();
 if(method_exists($controller,$_GET["action"])) {
     $dataToView["data"] = $controller->{$_GET["action"]}();
