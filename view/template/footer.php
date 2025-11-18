@@ -211,7 +211,7 @@
         }
         
         // ========================================
-        // CARRITO PERSISTENTE (LocalStorage)
+        // CARRITO 
         // ========================================
         
         function saveCartToStorage() {
@@ -465,11 +465,6 @@
             }
         `;
         document.head.appendChild(style);
-        
-        // ========================================
-        // EXPORT/IMPORT DE DATOS
-        // ========================================
-        
         
     </script>
 </body>
